@@ -3,10 +3,14 @@ import type { FC } from 'react'
 import { TButtons } from '@features/controlsValidatorJSON'
 import { ButtonCustom } from '@shared/ui'
 
-const ButtonRemember: FC<TButtons.TButtonRememberJSON> = ({ dataJSON = {}, ...props }) => {
-  const { JSONData, isValidJSONData } = dataJSON
+const ButtonRemember: FC<TButtons.TButtonRememberJSON> = ({
+  dataJSON,
+  setIsNewClickButtonRemember,
+  ...props
+}) => {
+  const { JSONValue, isValidJSONValue } = dataJSON || {}
 
-  if (!JSONData || !isValidJSONData) {
+  if (!JSONValue || !isValidJSONValue) {
     return (
       <ButtonCustom disabled {...props}>
         Need valid JSON
@@ -15,7 +19,8 @@ const ButtonRemember: FC<TButtons.TButtonRememberJSON> = ({ dataJSON = {}, ...pr
   }
 
   const onClick = () => {
-    localStorage.setItem('JSONValid_last', JSONData)
+    localStorage.setItem('JSONValid_last', JSONValue)
+    setIsNewClickButtonRemember && setIsNewClickButtonRemember(true)
   }
 
   return (

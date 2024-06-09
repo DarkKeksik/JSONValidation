@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 
 type TTextareaValidatorJSON = {
-  isError?: boolean
+  $isError?: boolean
 }
 
 export const TextareaValidatorJSON = styled.textarea<TTextareaValidatorJSON>`
@@ -22,8 +22,8 @@ export const TextareaValidatorJSON = styled.textarea<TTextareaValidatorJSON>`
       background: ${({ theme }) => theme.backgroundExtra2 && theme.backgroundExtra2};
     }
 
-    ${({ isError = false }) =>
-      isError &&
+    ${({ $isError = false }) =>
+      $isError &&
       css`
         border: 1px solid #ff7070;
         box-shadow: 5px 2px 0px #ff7070;

@@ -1,42 +1,36 @@
-import type { FC, ChangeEvent } from 'react'
+import type { FC, ChangeEvent, Dispatch, SetStateAction } from 'react'
 import { useEffect, useState } from 'react'
 
 import { validationJSON } from '@entities/validatorJSON'
 import { Textarea } from '@shared/ui'
+import { TDataJSON } from '@shared/types'
 import { useDebounce } from '@shared/hooks'
 
 import * as Styled from './Textarea.styled'
 
 type TTextareaValidatorJSON = {
-  sideEffects?: ([currentlyJSON, isValid]: Array<
-    string | number | undefined | boolean | null
-  >) => void
+  setDataJSON?: Dispatch<SetStateAction<TDataJSON>>
   setIsNewClickLastJSON: (isNewClick: boolean) => void
   isNewClickLastJSON: boolean
   lastJSON?: string
 }
 
 const TextareaValidatorJSON: FC<TTextareaValidatorJSON> = ({
-  sideEffects,
+  setDataJSON,
   setIsNewClickLastJSON,
   isNewClickLastJSON,
   lastJSON,
 }) => {
-  const [valJSON, setValJSON] = useState<string | null>()
+  const [JSONValue, setJSONValue] = useState<string>()
   const [isValidJSON, setIsValidJSON] = useState<boolean>()
-  const valueDebounce = useDebounce({ value: valJSON })
+  const valueDebounce = useDebounce({ value: JSONValue })
 
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const {
-      target: { value: valJSON },
+      target: { value },
     } = e
 
-    if (valJSON.length === 0) {
-      setValJSON(null)
-      return
-    }
-
-    setValJSON(valJSON)
+    setJSONValue(value)
   }
 
   useEffect(() => {
@@ -44,23 +38,22 @@ const TextareaValidatorJSON: FC<TTextareaValidatorJSON> = ({
     setIsValidJSON(statusValidJSON)
 
     if (isNewClickLastJSON) {
-      setValJSON(lastJSON)
+      setJSONValue(lastJSON)
       setIsNewClickLastJSON(false)
     }
 
-    if (sideEffects) {
-      sideEffects({ JSONData: valueDebounce, isValidJSONData: statusValidJSON })
+    if (setDataJSON) {
+      setDataJSON({ JSONValue: valueDebounce as string, isValidJSONValue: statusValidJSON })
     }
-  }, [valueDebounce, sideEffects, isNewClickLastJSON, setIsNewClickLastJSON, lastJSON])
+  }, [valueDebounce, setDataJSON, isNewClickLastJSON, setIsNewClickLastJSON, lastJSON])
 
   return (
     <Styled.TextareaValidatorJSON
-      isError={!isValidJSON}
       as={Textarea}
-      inputFontSize={60}
+      $isError={!isValidJSON}
       placeholder={`{ 'iMSoooWrong: 'fixMe" }`}
       onChange={onChange}
-      value={valJSON}
+      value={JSONValue}
     />
   )
 }
