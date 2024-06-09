@@ -5,5 +5,6 @@ export const themes = {
     backgroundExtra1: '#05386b',
     backgroundExtra2: '#379683',
     backgroundExtra3: '#8EE4AF',
+    colorError: '#ff7070',
   },
 }

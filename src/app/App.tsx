@@ -3,7 +3,6 @@ import { ThemeProvider } from 'styled-components'
 import GlobalStyle from './global.styles'
 import { themes } from './Providers/themes/themes'
 
-// import { CardsJSONSaved } from '@widgets/cardsJSONSaved'
 import { ToolValidatorJSON } from '@widgets/toolValidatorJSON'
 
 const App = () => {
@@ -13,7 +12,6 @@ const App = () => {
 
       <ThemeProvider theme={themes.green}>
         <ToolValidatorJSON />
-        {/* <CardsJSONSaved /> */}
       </ThemeProvider>
     </>
   )

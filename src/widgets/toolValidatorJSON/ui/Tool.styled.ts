@@ -18,3 +18,8 @@ export const ToolValidatorJSON = styled.section`
   padding: 1rem;
   box-sizing: border-box;
 `
+
+export const ButtonPanel = styled.div`
+  display: flex;
+  gap: 1rem;
+`

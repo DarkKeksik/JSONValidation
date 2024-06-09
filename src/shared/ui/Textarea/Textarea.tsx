@@ -4,10 +4,7 @@ import { Input } from 'antd'
 import { ConfigProvider } from 'antd'
 import * as Styled from './Textarea.styled'
 
-/**
- *  @TODO 25 magic num, must fix
- * */
-const Textarea: FC<typeof Input.TextArea> = (props) => {
+const Textarea: FC = (props) => {
   return (
     <ConfigProvider
       theme={{

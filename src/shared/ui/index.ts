@@ -1,4 +1,4 @@
-export { default as Button } from './Button/Button'
+export { default as ButtonCustom } from './ButtonCustom/ButtonCustom'
 export { default as Card } from './Card/Card'
 export { default as Textarea } from './Textarea/Textarea'
 export { default as Title } from './Title/Title'
