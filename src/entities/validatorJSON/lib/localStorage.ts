@@ -1,3 +1,3 @@
 export const getLastJSONLocalStorage = (key = 'JSONValid_last') => {
-  return localStorage.getItem(key)
+  return localStorage.getItem(key) as string
 }

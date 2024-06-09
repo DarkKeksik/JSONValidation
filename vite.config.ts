@@ -4,7 +4,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '',
+  base: '/JSONValidation/',
   plugins: [
     react({
       plugins: [['@swc/plugin-styled-components', { displayName: true }]],
